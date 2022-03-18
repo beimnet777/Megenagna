@@ -9,9 +9,9 @@ Our project claims to solve the problem of employee candidates in finding jobs t
 
 
 # Group Members
-Name                       ID              Section
-Beimnet Bekele       Ugr/3739/12             1
-Nahom Senay          ugr/9334/12             2
-Fikremariam FIkadu   ugr/9125/12             2
-Tewodros Alemu       ugr/7621/12             2
-Paulos Dessie        ugr/6912/12             3
+Name                       ID              Section\n
+Beimnet Bekele       Ugr/3739/12             1\n
+Nahom Senay          ugr/9334/12             2\n
+Fikremariam FIkadu   ugr/9125/12             2\n
+Tewodros Alemu       ugr/7621/12             2\n
+Paulos Dessie        ugr/6912/12             3\n
