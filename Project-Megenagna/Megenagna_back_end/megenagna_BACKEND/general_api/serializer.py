@@ -18,4 +18,3 @@ class JobSerializer(serializers.ModelSerializer):
     class Meta:
         model = Job
         fields = ('id','job_name','job_experience_years','job_description')
-    

@@ -1,9 +1,6 @@
-from sys import maxsize
 from django.db import models
 
-
 # Create your models here.
-
 class Employee(models.Model):
     employee_name = models.CharField(max_length=100)
     employee_age = models.IntegerField()
@@ -20,7 +17,3 @@ class Job(models.Model):
     job_name = models.CharField(max_length= 100)
     job_experience_years = models.IntegerField()
     job_description = models.TextField()
-
-
-
-
