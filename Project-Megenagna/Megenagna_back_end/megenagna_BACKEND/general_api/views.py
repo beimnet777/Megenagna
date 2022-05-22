@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics,viewsets
 from .models import Employee, Employer, Job
 from .serializer import EmployeeSerializer,EmployerSerializer,JobSerializer
+
 
 
 # Create your views here.
@@ -13,6 +14,6 @@ class EmployerView(generics.ListCreateAPIView):
     queryset = Employer.objects.all()
     serializer_class = EmployerSerializer
 
-class JobView(generics.ListCreateAPIView):
+class JobViewSet(viewsets.ModelViewSet):
     queryset = Job.objects.all()
     serializer_class = JobSerializer
