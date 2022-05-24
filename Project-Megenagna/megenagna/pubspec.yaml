@@ -60,10 +60,6 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
-<<<<<<< HEAD:megenagna/pubspec.yaml
-  #   - images/a_dot_ham.jpeg
-=======
->>>>>>> 33f04994191d37cf5c738e0c8bd8371d059eff2e:Project-Megenagna/megenagna/pubspec.yaml
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
