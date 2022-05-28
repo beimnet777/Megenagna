@@ -68,10 +68,7 @@ class _HomeState extends State<Home> {
                           color: Color.fromRGBO(233, 159, 36, 1),
                           borderRadius: BorderRadius.circular(15)),
                       child: InkWell(
-                        onTap: () =>
-                            setState(() => pressAttention = !pressAttention),
-                        // hoverColor: Colors.orangeAccent,
-                        // highlightColor: Colors.orange[800],
+                        onTap: () {},
                         child: Center(
                             child: Text("Some field")), //insert field name here
                       ),
@@ -80,61 +77,47 @@ class _HomeState extends State<Home> {
                 ),
               ),
               SizedBox(height: 10),
-              Container(
-                height: MediaQuery.of(context).size.height * 0.755,
-                width: MediaQuery.of(context).size.width,
-                child: ListView.builder(
-                    itemCount: 15,
-                    itemBuilder: (context, index) {
-                      return Card(
-                        elevation: 5,
-                        margin:
-                            EdgeInsets.only(bottom: 15, left: 15, right: 15),
-                        color: Color.fromRGBO(245, 222, 183, 1),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                CircleAvatar(
-                                  radius: 20,
-                                  foregroundImage: AssetImage(
-                                      "../assets/photo01.jpg"), //insert logo of company
-                                ),
-                                SizedBox(
-                                  width: 15,
-                                ),
-                                Text(
-                                  "MYNERGY",
-                                  style: TextStyle(
-                                      color: Colors.blue[700],
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(left: 25),
+              Expanded(
+                child: Container(
+                  child: ListView.builder(
+                      itemCount: 15,
+                      itemBuilder: (context, index) {
+                        return Expanded(
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.7,
+                            child: Card(
+                              elevation: 5,
+                              margin: EdgeInsets.only(
+                                  bottom: 15, left: 15, right: 15),
+                              color: Color.fromRGBO(245, 222, 183, 1),
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
+                                  SizedBox(
+                                    height: 10,
+                                  ),
                                   Row(
                                     children: [
-                                      Text("Mechanic"), //job title here
                                       SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.45,
+                                        width: 10,
+                                      ),
+                                      CircleAvatar(
+                                        radius: 20,
+                                        foregroundImage: AssetImage(
+                                            "../assets/photo01.jpg"), //insert logo of company
+                                      ),
+                                      SizedBox(
+                                        width: 15,
+                                      ),
+                                      Text(
+                                        "MYNERGY",
+                                        style: TextStyle(
+                                            color: Colors.blue[700],
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20),
+                                      ),
+                                      SizedBox(
+                                        width: 15,
                                       ),
                                       Container(
                                         width: 120,
@@ -147,54 +130,93 @@ class _HomeState extends State<Home> {
                                             child: Text(
                                           "Full Time",
                                           style: TextStyle(color: Colors.white),
-                                        )), //full time or partime info
+                                        )), //full time or partime info,
                                       )
                                     ],
                                   ),
-                                  Text(
-                                      "12,000 - 15,000 ETB per month"), //payment
-                                  Text(
-                                      "Education level: Bachelor"), // edu level
-                                  Text("Experience: 2 years"), //experience
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(left: 25),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text("Mechanic"), //job title here
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.45,
+                                            ),
+                                          ],
+                                        ),
+                                        Text(
+                                            "12,000 - 15,000 ETB per month"), //payment
+                                        Text(
+                                            "Education level: Bachelor"), // edu level
+                                        Text(
+                                            "Experience: 2 years"), //experience
+                                      ],
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+                                      // SizedBox(
+                                      //   width:
+                                      //       MediaQuery.of(context).size.width *
+                                      //           0.05,
+                                      //   height:
+                                      //       MediaQuery.of(context).size.height *
+                                      //           0.1,
+                                      // ),
+                                      SizedBox(
+                                        height: 50,
+                                        width: 20,
+                                      ),
+                                      Expanded(
+                                        flex: 1,
+                                        child: InkWell(
+                                          child: Text(
+                                            "APPLY NOW",
+                                            style: TextStyle(
+                                                color: Colors.blue[700],
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18.4),
+                                          ),
+                                        ),
+                                      ),
+                                      // SizedBox(
+                                      //   width:
+                                      //       MediaQuery.of(context).size.width *
+                                      //           0.45,
+                                      // ),
+                                      Expanded(
+                                        flex: 1,
+                                        child: InkWell(
+                                          child: Text(
+                                            "MORE >>",
+                                            style: TextStyle(
+                                                color: Colors.blue[700],
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18.4),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ],
                               ),
                             ),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.05,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.1,
-                                ),
-                                InkWell(
-                                  child: Text(
-                                    "APPLY NOW",
-                                    style: TextStyle(
-                                        color: Colors.blue[700],
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18.4),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.45,
-                                ),
-                                InkWell(
-                                  child: Text(
-                                    "MORE >>",
-                                    style: TextStyle(
-                                        color: Colors.blue[700],
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18.4),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      );
-                    }),
+                          ),
+                        );
+                      }),
+                ),
               )
             ],
           ),
