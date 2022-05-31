@@ -1,234 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:megenagna/blocs/bottom_navigation/bottom_navigation_bloc.dart';
+import 'package:megenagna/blocs/bottom_navigation/bottom_navigation_event.dart';
+import 'package:megenagna/ui/Apply.dart';
+import 'package:megenagna/ui/Feed.dart';
+import 'package:megenagna/ui/Status.dart';
 
-class Home extends StatefulWidget {
-  Home({Key? key}) : super(key: key);
-
-  @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  bool pressAttention = true;
-
+class Home extends StatelessWidget {
+  int navIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(style: BorderStyle.solid),
-                          borderRadius: BorderRadius.circular(13)),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Icon(Icons.search),
-                          Container(
-                            padding: EdgeInsets.only(bottom: 7, left: 5),
-                            width: 180,
-                            height: 25,
-                            child: TextField(
-                              style: TextStyle(fontSize: 11),
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'search here...'),
-                            ),
-                          ),
-                        ],
-                      )),
-                  CircleAvatar(
-                    radius: 20,
-                    foregroundImage: AssetImage("../assets/photo01.jpg"),
-                  )
-                ],
-              ),
-              SizedBox(height: 10),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: 35,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 10, //insert number of fields
-                  itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      margin: EdgeInsets.only(
-                          left: 10, right: 10, bottom: 0, top: 5),
-                      width: 150,
-                      decoration: BoxDecoration(
-                          color: Color.fromRGBO(233, 159, 36, 1),
-                          borderRadius: BorderRadius.circular(15)),
-                      child: InkWell(
-                        onTap: () {},
-                        child: Center(
-                            child: Text("Some field")), //insert field name here
-                      ),
-                    );
-                  },
-                ),
-              ),
-              SizedBox(height: 10),
-              Expanded(
-                child: Container(
-                  child: ListView.builder(
-                      itemCount: 15,
-                      itemBuilder: (context, index) {
-                        return Expanded(
-                          child: Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: Card(
-                              elevation: 5,
-                              margin: EdgeInsets.only(
-                                  bottom: 15, left: 15, right: 15),
-                              color: Color.fromRGBO(245, 222, 183, 1),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      CircleAvatar(
-                                        radius: 20,
-                                        foregroundImage: AssetImage(
-                                            "../assets/photo01.jpg"), //insert logo of company
-                                      ),
-                                      SizedBox(
-                                        width: 15,
-                                      ),
-                                      Text(
-                                        "MYNERGY",
-                                        style: TextStyle(
-                                            color: Colors.blue[700],
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 20),
-                                      ),
-                                      SizedBox(
-                                        width: 15,
-                                      ),
-                                      Container(
-                                        width: 120,
-                                        height: 25,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                            color: Colors.blue[700]),
-                                        child: Center(
-                                            child: Text(
-                                          "Full Time",
-                                          style: TextStyle(color: Colors.white),
-                                        )), //full time or partime info,
-                                      )
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(left: 25),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Text("Mechanic"), //job title here
-                                            SizedBox(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.45,
-                                            ),
-                                          ],
-                                        ),
-                                        Text(
-                                            "12,000 - 15,000 ETB per month"), //payment
-                                        Text(
-                                            "Education level: Bachelor"), // edu level
-                                        Text(
-                                            "Experience: 2 years"), //experience
-                                      ],
-                                    ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      // SizedBox(
-                                      //   width:
-                                      //       MediaQuery.of(context).size.width *
-                                      //           0.05,
-                                      //   height:
-                                      //       MediaQuery.of(context).size.height *
-                                      //           0.1,
-                                      // ),
-                                      SizedBox(
-                                        height: 50,
-                                        width: 20,
-                                      ),
-                                      Expanded(
-                                        flex: 1,
-                                        child: InkWell(
-                                          child: Text(
-                                            "APPLY NOW",
-                                            style: TextStyle(
-                                                color: Colors.blue[700],
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 18.4),
-                                          ),
-                                        ),
-                                      ),
-                                      // SizedBox(
-                                      //   width:
-                                      //       MediaQuery.of(context).size.width *
-                                      //           0.45,
-                                      // ),
-                                      Expanded(
-                                        flex: 1,
-                                        child: InkWell(
-                                          child: Text(
-                                            "MORE >>",
-                                            style: TextStyle(
-                                                color: Colors.blue[700],
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 18.4),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      }),
-                ),
-              )
-            ],
-          ),
+        body: BlocBuilder<BottomNavBloc, int>(
+          builder: (context, state) {
+            return pagePicker(state);
+          },
         ),
-        bottomNavigationBar: BottomNavigationBar(items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.window_outlined), label: "idk"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings), label: "Settings"),
-        ]),
+        bottomNavigationBar: BlocBuilder<BottomNavBloc, int>(
+          builder: (BuildContext context, int state) {
+            return BottomNavigationBar(
+              onTap: (int value) {
+                final authBloc = BlocProvider.of<BottomNavBloc>(context);
+                authBloc.add(BarItemChanged(value));
+              },
+              currentIndex: state,
+              items: [
+                BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.window_outlined), label: "Status"),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.settings), label: "Settings"),
+              ],
+            );
+          },
+        ),
       ),
     );
+  }
+
+  pagePicker(int index) {
+    return index == 0
+        ? Feed()
+        : index == 1
+            ? Status()
+            : Apply();
   }
 }
