@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
@@ -7,19 +8,36 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(30),
+          child: AppBar(
+              elevation: 0,
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      context.go("/profileUpdate");
+                    },
+                    icon: Icon(Icons.edit))
+              ],
+              backgroundColor: Colors.blue[800]),
+        ),
         body: Container(
           color: Colors.blue[800],
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           child: Column(children: [
-            SizedBox(height: 35),
             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
               Container(
-                width: 80,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("../assets/photo01.jpg")),
-                    borderRadius: BorderRadius.circular(40)),
+                height: 130,
+                width: 130,
+                child: ClipRRect(
+                  //this widget contains the image thats is shaped circular
+                  child: Image.asset(
+                    "assets/photo01.jpg",
+                    fit: BoxFit.fill,
+                  ),
+                  borderRadius: BorderRadius.circular(65),
+                ),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,7 +49,7 @@ class Profile extends StatelessWidget {
                     "John Doe",
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
-                      fontSize: 21.95,
+                      fontSize: 20,
                       color: Colors.white,
                     ),
                   ),
@@ -39,12 +57,12 @@ class Profile extends StatelessWidget {
                     "jo2345",
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
-                      fontSize: 15,
+                      fontSize: 13,
                       color: Colors.white,
                     ),
                   ),
                   SizedBox(
-                    height: 50,
+                    height: 20,
                   ),
                   Text(
                     "4 Years Experience",
