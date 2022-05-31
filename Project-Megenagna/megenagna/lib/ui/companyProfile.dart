@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:megenagna/ui/Applicants.dart';
 
 class CompanyProfile extends StatefulWidget {
   @override
@@ -10,9 +11,25 @@ class CompanyProfile_State extends State<CompanyProfile> {
       IconData(0xeff9, fontFamily: "MaterialIcons");
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        color: Colors.white,
+    return Scaffold(
+      appBar: AppBar(
+        // title: Text(
+        //   "MYNERGY",
+        //   style: TextStyle(color: Colors.black),
+        // ),
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.black),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: ((context) {
+                  return ApplicantsList();
+                })));
+              },
+              icon: Icon(Icons.edit))
+        ],
+      ),
+      body: Container(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -58,7 +75,7 @@ class CompanyProfile_State extends State<CompanyProfile> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 10.0, horizontal: 5),
                 child: Card(
-                  elevation: 10,
+                  elevation: 5,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         vertical: 10.0, horizontal: 20),
