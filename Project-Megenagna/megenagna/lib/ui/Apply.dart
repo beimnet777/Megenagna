@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:megenagna/blocs/apply_bloc/apply_bloc.dart';
-import 'package:megenagna/blocs/apply_bloc/apply_event.dart';
-import 'package:megenagna/blocs/apply_bloc/apply_state.dart';
 import 'package:megenagna/ui/Home.dart';
 import 'package:megenagna/ui/companyProfile.dart';
+
+import 'blocs/apply_bloc/apply_bloc.dart';
+import 'blocs/apply_bloc/apply_event.dart';
+import 'blocs/apply_bloc/apply_state.dart';
 
 class Apply extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();

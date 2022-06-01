@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:megenagna/blocs/bottom_navigation/bottom_navigation_event.dart';
+import 'bottom_navigation_event.dart';
 
 class BottomNavBloc extends Bloc<BarItemChanged, int> {
   BottomNavBloc(int initialState) : super(initialState) {

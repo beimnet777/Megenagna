@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:megenagna/blocs/bottom_navigation/bottom_navigation_bloc.dart';
-import 'package:megenagna/blocs/bottom_navigation/bottom_navigation_event.dart';
 import 'package:megenagna/ui/Apply.dart';
 import 'package:megenagna/ui/Feed.dart';
 import 'package:megenagna/ui/Status.dart';
+
+import 'blocs/bottom_navigation/bottom_navigation_bloc.dart';
+import 'blocs/bottom_navigation/bottom_navigation_event.dart';
 
 class Home extends StatelessWidget {
   int navIndex = 0;

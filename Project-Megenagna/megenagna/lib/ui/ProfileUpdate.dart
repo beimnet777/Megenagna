@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:megenagna/blocs/profile%20_update_blocs/save_state.dart';
+// import 'blocs/profile _update_blocs/profile _update_blocs/profile_updater_bloc.dart';
+import 'blocs/profile _update_blocs/profile _update_blocs/save_event.dart';
+import 'blocs/profile _update_blocs/profile_updater_bloc.dart';
+import 'blocs/profile _update_blocs/save_event.dart';
+import 'blocs/profile%20_update_blocs/save_state.dart';
 
-import '../blocs/profile _update_blocs/profile_updater_bloc.dart';
-import '../blocs/profile _update_blocs/save_event.dart';
+import './blocs/profile _update_blocs/profile_updater_bloc.dart';
+import './blocs/profile _update_blocs/save_event.dart';
 import "./Stats.dart";
 
 class ProfileUpdate extends StatelessWidget {
@@ -44,9 +48,7 @@ class ProfileUpdate extends StatelessWidget {
         preferredSize: Size.fromHeight(30),
         child: AppBar(elevation: 0, backgroundColor: Colors.blue[800]),
       ),
-      body: BlocProvider(
-        create: (_) => ProfileUpdaterBloc(),
-        child: SafeArea(
+      body:SafeArea(
           top: false,
           bottom: false,
           child: Container(
@@ -327,7 +329,6 @@ class ProfileUpdate extends StatelessWidget {
             ),
           ),
         ),
-      ),
     );
   }
 }
