@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:megenagna/ui/Applicants.dart';
-import 'package:megenagna/ui/Apply.dart';
-import 'package:megenagna/ui/CompanyHome.dart';
-import 'package:megenagna/ui/Status.dart';
-import 'package:megenagna/ui/blocs/apply_bloc/apply_state.dart';
-import 'package:megenagna/ui/companyProfile.dart';
-import 'package:megenagna/ui/Home.dart';
-import 'package:megenagna/ui/Profile.dart';
-import 'ui/blocs/apply_bloc/apply_bloc.dart';
-import 'ui/blocs/bottom_navigation/bottom_navigation_bloc.dart';
-import 'ui/blocs/profile _update_blocs/profile_updater_bloc.dart';
+import 'package:megenagna/employer/screens/Applicants.dart';
+import 'package:megenagna/employee/screens/Apply.dart';
+import 'package:megenagna/employer/screens/CompanyHome.dart';
+import 'package:megenagna/employee/screens/Status.dart';
+import './employee/blocs/apply_bloc/apply_state.dart';
+import 'package:megenagna/employer/screens/companyProfile.dart';
+import 'employee/screens/Home.dart';
+import 'employee/screens/Profile.dart';
+import './employee/blocs/apply_bloc/apply_bloc.dart';
+import 'package:megenagna/employee/blocs/bottom_navigation/bottom_navigation_bloc.dart';
+import './employee/blocs/profile _update_blocs/profile_updater_bloc.dart';
 
 void main() {
   final router = GoRouter(routes: [
@@ -44,7 +44,7 @@ void main() {
     MultiBlocProvider(
       providers: [
         BlocProvider(create: (BuildContext context) => BottomNavBloc(0)),
-        BlocProvider(create: (BuildContext context) => ApplyBloc(Idle())),
+        BlocProvider(create: (BuildContext context) => ApplyBloc()),
         BlocProvider(create: (BuildContext context) => ProfileUpdaterBloc())
       ],
       child: MaterialApp.router(
