@@ -41,7 +41,9 @@ class Feed extends StatelessWidget {
                     ],
                   )),
               InkWell(
-                onTap: (() {}),
+                onTap: (() {
+                  context.go("/profile/user");
+                }),
                 child: CircleAvatar(
                   radius: 20,
                   foregroundImage: AssetImage("assets/photo01.jpg"),
@@ -107,7 +109,7 @@ class Feed extends StatelessWidget {
                                     ),
                                     InkWell(
                                       onTap: () {
-                                        //push to beimnet wede seraw
+                                        context.go("/profile/company");
                                       },
                                       child: CircleAvatar(
                                         radius: 20,

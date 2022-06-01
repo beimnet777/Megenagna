@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'Home.dart';
 import '../../employer/screens/companyProfile.dart';
 
@@ -152,10 +153,7 @@ class Apply extends StatelessWidget {
                       },
                       listener: (BuildContext context, Object? state) {
                         //add snackbar
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CompanyProfile()));
+                        context.go('/');
                       },
                     ),
 
