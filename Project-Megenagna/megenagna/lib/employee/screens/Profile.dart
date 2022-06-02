@@ -8,19 +8,16 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(30),
-          child: AppBar(
-              elevation: 0,
-              actions: [
-                IconButton(
-                    onPressed: () {
-                      context.go("/profileUpdate");
-                    },
-                    icon: Icon(Icons.edit))
-              ],
-              backgroundColor: Colors.blue[800]),
-        ),
+        appBar: AppBar(
+            elevation: 0,
+            actions: [
+              IconButton(
+                  onPressed: () {
+                    context.go("/profile/profileUpdate");
+                  },
+                  icon: Icon(Icons.edit))
+            ],
+            backgroundColor: Colors.blue[800]),
         body: Container(
           color: Colors.blue[800],
           width: MediaQuery.of(context).size.width,

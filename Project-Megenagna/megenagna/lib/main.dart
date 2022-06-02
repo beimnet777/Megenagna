@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:megenagna/employee/screens/ProfileUpdate.dart';
 import 'package:megenagna/employer/screens/Applicants.dart';
 import 'package:megenagna/employee/screens/Apply.dart';
 import 'package:megenagna/employer/screens/CompanyHome.dart';
@@ -38,6 +39,18 @@ void main() {
               return MaterialPage(child: CompanyProfile());
             },
           ),
+          GoRoute(
+              path: "profile",
+              pageBuilder: (context, state) {
+                return MaterialPage(child: Profile());
+              },
+              routes: [
+                GoRoute(
+                    path: "profileUpdate",
+                    pageBuilder: (context, state) {
+                      return MaterialPage(child: ProfileUpdate());
+                    }),
+              ])
         ]),
   ]);
   runApp(

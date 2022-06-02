@@ -41,7 +41,9 @@ class Feed extends StatelessWidget {
                     ],
                   )),
               InkWell(
-                onTap: (() {}),
+                onTap: (() {
+                  context.go("/profile");
+                }),
                 child: CircleAvatar(
                   radius: 20,
                   foregroundImage: AssetImage("assets/photo01.jpg"),
@@ -79,8 +81,7 @@ class Feed extends StatelessWidget {
               child: ListView.builder(
                   itemCount: 15,
                   itemBuilder: (context, index) {
-                    return Expanded(
-                      child: InkWell(
+                    return InkWell(
                         // onTap: () {
                         //   Navigator.push(context,
                         //       MaterialPageRoute(builder: (context) {
@@ -214,8 +215,7 @@ class Feed extends StatelessWidget {
                             ),
                           ),
                         ),
-                      ),
-                    );
+                      );
                   }),
             ),
           )
