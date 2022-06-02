@@ -14,7 +14,7 @@ class UserProvider {
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: jsonEncode(user.jsonify(user)),
+        body: jsonEncode(user.jsonify()),
       );
       if (response.statusCode == 200) {
         return User.fromJson(jsonDecode(response.body));
@@ -27,11 +27,73 @@ class UserProvider {
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: jsonEncode(user.jsonify(user)),
+        body: jsonEncode(user.jsonify()),
       );
       if (response.statusCode == 200) {
         return User.fromJson(jsonDecode(response.body));
       } else {
+        throw Exception('Failed to load course');
+      }
+    }
+  }
+
+  Future<User> getUser(String id) async {
+    final response = await http.get(Uri.parse('$baseUrlEmployee/$id'));
+
+    if (response.statusCode == 200) {
+      return User.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to load course');
+    }
+  }
+
+  Future<void> deleteUser(User user) async {
+    if (user.type == 0) {
+      final http.Response response = await http.delete(
+        Uri.parse('$baseUrlEmployee/${user.id}'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+
+      if (response.statusCode != 204) {
+        throw Exception('Failed to delete course.');
+      }
+    } else {
+      final http.Response response = await http.delete(
+        Uri.parse('$baseUrlEmployer/${user.id}'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+
+      if (response.statusCode != 204) {
+        throw Exception('Failed to delete course.');
+      }
+    }
+  }
+
+  Future<void> updateUser(User user) async {
+    if (user.type == 0) {
+      final http.Response response = await http.put(
+        Uri.parse('$baseUrlEmployer/${user.id}'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(user.jsonify()),
+      );
+      if (response.statusCode != 204) {
+        throw Exception('Failed to load course');
+      }
+    } else {
+      final http.Response response = await http.put(
+        Uri.parse('$baseUrlEmployee/${user.id}'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(user.jsonify()),
+      );
+      if (response.statusCode != 204) {
         throw Exception('Failed to load course');
       }
     }
