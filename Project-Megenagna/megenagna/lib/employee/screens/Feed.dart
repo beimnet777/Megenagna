@@ -51,30 +51,30 @@ class Feed extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(height: 10),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: 35,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 10, //insert number of fields
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  margin:
-                      EdgeInsets.only(left: 10, right: 10, bottom: 0, top: 5),
-                  width: 150,
-                  decoration: BoxDecoration(
-                      color: Color.fromRGBO(233, 159, 36, 1),
-                      borderRadius: BorderRadius.circular(15)),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Center(
-                        child: Text("Some field")), //insert field name here
-                  ),
-                );
-              },
-            ),
-          ),
+          SizedBox(height: 5),
+          // Container(
+          //   width: MediaQuery.of(context).size.width,
+          //   height: 35,
+          //   child: ListView.builder(
+          //     scrollDirection: Axis.horizontal,
+          //     itemCount: 10, //insert number of fields
+          //     itemBuilder: (BuildContext context, int index) {
+          //       return Container(
+          //         margin:
+          //             EdgeInsets.only(left: 10, right: 10, bottom: 0, top: 5),
+          //         width: 150,
+          //         decoration: BoxDecoration(
+          //             color: Color.fromRGBO(233, 159, 36, 1),
+          //             borderRadius: BorderRadius.circular(15)),
+          //         child: InkWell(
+          //           onTap: () {},
+          //           child: Center(
+          //               child: Text("Some field")), //insert field name here
+          //         ),
+          //       );
+          //     },
+          //   ),
+          // ),
           SizedBox(height: 10),
           Expanded(
             child: Container(

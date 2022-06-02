@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:megenagna/employee/screens/Settings.dart';
 import 'Apply.dart';
 import 'Feed.dart';
 import 'Status.dart';
@@ -45,6 +46,6 @@ class Home extends StatelessWidget {
         ? Feed()
         : index == 1
             ? Status()
-            : Apply();
+            : Settings();
   }
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:megenagna/Auth/bloc/auth_bloc.dart';
+import 'package:megenagna/Auth/screen/Login.dart';
+import 'package:megenagna/Auth/screen/SignUp.dart';
 import 'package:megenagna/employer/screens/Applicants.dart';
 import 'package:megenagna/employee/screens/Apply.dart';
 import 'package:megenagna/employer/screens/CompanyHome.dart';
