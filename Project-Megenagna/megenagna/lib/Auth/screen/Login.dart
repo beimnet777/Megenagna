@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'SignUp.dart';
-import 'package:megenagna/Auth/bloc/auth_bloc.dart';
-
-
+import 'package:project/Auth/bloc/auth_bloc.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -53,6 +51,14 @@ class LoginScreen extends StatelessWidget {
                       height: 10,
                     ),
                     TextFormField(
+                      validator: (value) {
+                        if (value == null || value.isEmpty){
+                          return "Enter a Password";
+                        }
+                        else if (value.length < 8){
+                          return "password is too short ";
+                        }
+                      },
                       controller: passwordController,
                       obscureText: true,
                       decoration: const InputDecoration(
@@ -65,23 +71,48 @@ class LoginScreen extends StatelessWidget {
                           icon: Icon(Icons.password)),
                     ),
                     const SizedBox(height: 10),
-                    BlocConsumer<AuthBloc, AuthState>(
-                        listener: ((context, state) {
-                      if (state is Loggedin) {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Signup()));
-                      }
-                    }), builder: (context, state) {
-                      Widget temp = const Text("Login");
-                      final String username = usernameController.text;
-                      final String password = passwordController.text;
+                    Row(children: [
+                      Expanded(child: Container()),
+                      BlocConsumer<AuthBloc, AuthState>(
+                          listener: ((context, state) {
+                        if (state is Loggedin) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Scaffold(
+                                      body: Center(child: Text("hello")))));
+                        }
+                      }), builder: (context, state) {
+                        Widget temp = const Text("Login");
+                        final String username = usernameController.text;
+                        final String password = passwordController.text;
 
-                      return ElevatedButton(
-                          child: temp,
-                          onPressed: () => BlocProvider.of<AuthBloc>(context)
-                              .add(Login(
-                                  username: username, password: password)));
-                    }),
+                        return ElevatedButton(
+                            child: temp,
+                            onPressed: () => BlocProvider.of<AuthBloc>(context)
+                                .add(Login(
+                                    username: username, password: password)));
+                      }),
+                      const SizedBox(width: 20),
+                      BlocConsumer<AuthBloc, AuthState>(
+                          listener: ((context, state) {
+                        if (state is SigningUp) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SignupScreen()));
+                        }
+                      }), builder: (context, state) {
+                        final String username = usernameController.text;
+                        final String password = passwordController.text;
+
+                        return ElevatedButton(
+                            child: const Text("Sign Up"),
+                            onPressed: () => BlocProvider.of<AuthBloc>(context)
+                                .add(SignUp()));
+                      }),
+                      Expanded(child: Container())
+                    ]),
                   ],
                 ))));
   }
