@@ -152,7 +152,6 @@ class Apply extends StatelessWidget {
                         return c is ApplySuccesfull;
                       },
                       listener: (BuildContext context, Object? state) {
-                        //add snackbar
                         context.go('/');
                       },
                     ),

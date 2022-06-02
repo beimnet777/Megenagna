@@ -19,35 +19,36 @@ class CompanyProfile_State extends State<CompanyProfile> {
         // ),
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: ((context) {
-                  return ApplicantsList();
-                })));
-              },
-              icon: Icon(Icons.edit))
-        ],
+        // actions: [
+        //   IconButton(
+        //       onPressed: () {
+        //         Navigator.push(context, MaterialPageRoute(builder: ((context) {
+        //           return ApplicantsList();
+        //         })));
+        //       },
+        //       icon: Icon(Icons.edit))
+        // ],
       ),
       body: Container(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                children: [
-                  Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Icon(Icons.arrow_back_ios_new_sharp)),
-                  Expanded(child: Container()),
-                  Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Icon(
-                        drive_file_rename_outline_outlined,
-                        size: 25,
-                      ))
-                ],
-              ),
+              // Row(
+              //   children: [
+              //     Padding(
+              //         padding: EdgeInsets.all(10),
+              //         child: Icon(Icons.arrow_back_ios_new_sharp)),
+              //     Expanded(child: Container()),
+              //     Padding(
+              //         padding: EdgeInsets.all(10),
+              //         child: Icon(
+              //           drive_file_rename_outline_outlined,
+              //           size: 25,
+              //         ))
+              //   ],
+              // ),
+              SizedBox(height: 8),
               Container(
                 height: 200,
                 width: 200,
