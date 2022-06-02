@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class Settings extends StatelessWidget {
         children: [
           ListTile(
             onTap: () {
-              //add go_route to profile update page
+              context.go("/profileUpdate");
             },
             title: Text("Edit Profile"),
             leading: Icon(Icons.edit_note),

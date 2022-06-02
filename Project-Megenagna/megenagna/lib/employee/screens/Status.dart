@@ -38,7 +38,7 @@ class Status extends StatelessWidget {
               )),
           InkWell(
             onTap: (() {
-              context.go("/profile/user");
+              context.go("/user/profile");
             }),
             child: CircleAvatar(
               radius: 20,
@@ -150,7 +150,7 @@ class Status extends StatelessWidget {
                                 width: 10,
                               ),
                               InkWell(
-                                onTap: () => context.go("/profile/company"),
+                                onTap: () => context.go("/company/profile"),
                                 child: CircleAvatar(
                                   radius: 20,
                                   foregroundImage: AssetImage(

@@ -28,11 +28,11 @@ class Feed extends StatelessWidget {
                       ),
                       Icon(Icons.search),
                       Container(
-                        padding: EdgeInsets.only(bottom: 7, left: 5),
+                        padding: EdgeInsets.only(left: 5),
                         width: 180,
                         height: 25,
                         child: TextField(
-                          style: TextStyle(fontSize: 11),
+                          style: TextStyle(fontSize: 15),
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: 'search here...'),
@@ -81,7 +81,8 @@ class Feed extends StatelessWidget {
               child: ListView.builder(
                   itemCount: 15,
                   itemBuilder: (context, index) {
-                    return InkWell(
+                    return Expanded(
+                      child: InkWell(
                         // onTap: () {
                         //   Navigator.push(context,
                         //       MaterialPageRoute(builder: (context) {
@@ -108,7 +109,7 @@ class Feed extends StatelessWidget {
                                     ),
                                     InkWell(
                                       onTap: () {
-                                        context.go("/profile/company");
+                                        context.go("/company/profile");
                                       },
                                       child: CircleAvatar(
                                         radius: 20,
@@ -215,7 +216,8 @@ class Feed extends StatelessWidget {
                             ),
                           ),
                         ),
-                      );
+                      ),
+                    );
                   }),
             ),
           )

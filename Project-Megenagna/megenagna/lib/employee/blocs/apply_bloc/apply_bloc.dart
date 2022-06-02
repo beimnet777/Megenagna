@@ -8,7 +8,8 @@ class ApplyBloc extends Bloc<ApplyEvent, ApplyState> {
   }
 }
 
-void _applyHandler(ApplyEvent event, Emitter emit) {
+void _applyHandler(ApplyEvent event, Emitter emit) async {
   emit(Saving());
+  await Future.delayed(Duration(seconds: 1));
   emit(ApplySuccesfull());
 }

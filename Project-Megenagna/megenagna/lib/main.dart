@@ -43,7 +43,7 @@ void main() {
           //   },
           // ),
           GoRoute(
-            path: 'profile/company',
+            path: 'company/profile',
             pageBuilder: (context, state) {
               return MaterialPage(child: CompanyProfile());
             },
@@ -59,7 +59,12 @@ void main() {
                     pageBuilder: (context, state) {
                       return MaterialPage(child: ProfileUpdate());
                     }),
-              ])
+              ]),
+          GoRoute(
+              path: "profileUpdate",
+              pageBuilder: (context, state) {
+                return MaterialPage(child: ProfileUpdate());
+              }),
         ]),
   ]);
   runApp(
