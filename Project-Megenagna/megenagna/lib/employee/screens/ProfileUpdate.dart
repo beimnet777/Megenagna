@@ -287,7 +287,7 @@ class ProfileUpdate extends StatelessWidget {
                         listener: (context, state) {
                       print("in the if");
                       if (state is Saved) {
-                        context.go("/profile");
+                        context.go("/user/profile");
                       }
                     }, builder: (context, state) {
                       print(state);

@@ -13,7 +13,7 @@ class Profile extends StatelessWidget {
             actions: [
               IconButton(
                   onPressed: () {
-                    context.go("/profile/profileUpdate");
+                    context.go("/user/profile/profileUpdate");
                   },
                   icon: Icon(Icons.edit))
             ],

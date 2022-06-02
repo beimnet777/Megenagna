@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class Status extends StatelessWidget {
   const Status({Key? key}) : super(key: key);
@@ -36,7 +37,9 @@ class Status extends StatelessWidget {
                 ],
               )),
           InkWell(
-            onTap: (() {}),
+            onTap: (() {
+              context.go("/profile/user");
+            }),
             child: CircleAvatar(
               radius: 20,
               foregroundImage: AssetImage("assets/photo01.jpg"),
@@ -146,10 +149,13 @@ class Status extends StatelessWidget {
                               SizedBox(
                                 width: 10,
                               ),
-                              CircleAvatar(
-                                radius: 20,
-                                foregroundImage: AssetImage(
-                                    "assets/photo01.jpg"), //insert logo of company
+                              InkWell(
+                                onTap: () => context.go("/profile/company"),
+                                child: CircleAvatar(
+                                  radius: 20,
+                                  foregroundImage: AssetImage(
+                                      "assets/photo01.jpg"), //insert logo of company
+                                ),
                               ),
                               SizedBox(
                                 width: 15,

@@ -33,14 +33,20 @@ void main() {
               return MaterialPage(child: CompanyProfile());
             },
           ),
+          // GoRoute(
+          //   path: 'profile/user',
+          //   pageBuilder: (context, state) {
+          //     return MaterialPage(child: Profile());
+          //   },
+          // ),
           GoRoute(
-            path: 'profile/comany',
+            path: 'profile/company',
             pageBuilder: (context, state) {
               return MaterialPage(child: CompanyProfile());
             },
           ),
           GoRoute(
-              path: "profile",
+              path: "user/profile",
               pageBuilder: (context, state) {
                 return MaterialPage(child: Profile());
               },
