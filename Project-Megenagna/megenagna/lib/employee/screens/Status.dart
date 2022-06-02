@@ -6,8 +6,7 @@ class Status extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Column(children: [
+    return Column(children: [
       SizedBox(
         height: 10,
       ),
@@ -219,7 +218,7 @@ class Status extends StatelessWidget {
               }),
         ),
       )
-    ]));
+    ]);
   }
 
   _colorPicker(int index) {
