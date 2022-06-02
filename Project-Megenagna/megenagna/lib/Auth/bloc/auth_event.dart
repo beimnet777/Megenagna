@@ -12,14 +12,20 @@ class Login extends AuthEvent {
   final String password;
 }
 
-class SignUp extends AuthEvent {
+class SignUp extends AuthEvent {}
+
+class Register extends AuthEvent{
   final String firstName;
   final String lastName;
   final String email;
+  final String address;
   final String password;
-  SignUp(
+  Register(
       {required this.firstName,
       required this.lastName,
       required this.email,
+      required this.address,
       required this.password});
 }
+
+
