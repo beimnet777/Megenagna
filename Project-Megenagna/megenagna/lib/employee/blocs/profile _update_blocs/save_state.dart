@@ -1,7 +1,17 @@
-abstract class SaveState{}
+import 'package:last/employee/models/employee.dart';
 
-class Idle extends SaveState{}
+abstract class SaveState {}
 
-class Saving extends SaveState{}
+class Idle extends SaveState {}
 
-class Saved extends SaveState{}
+class Saving extends SaveState {}
+
+class Saved extends SaveState {}
+
+class Loading extends SaveState {}
+
+class Loaded extends SaveState {
+  final Employee employee;
+
+  Loaded(this.employee);
+}

@@ -1,8 +1,14 @@
-class ApplyEvent {
-  final String gender;
-  final String degree;
-  final int age;
-  final int experience;
+import 'package:last/employee/models/applications.dart';
 
-  ApplyEvent(this.gender, this.degree, this.age, this.experience);
+abstract class ApplicationEvent {}
+
+class ApplyEvent extends ApplicationEvent {
+  final Application application;
+  ApplyEvent(this.application);
+}
+
+class LoadEvents extends ApplicationEvent {
+  final int id;
+
+  LoadEvents(this.id);
 }
