@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:last/Auth/data%20provider/user_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../data_provider/user_provider.dart';
 import '../models/user.dart';
 import '../repository/user_repo.dart';
 part 'auth_event.dart';

@@ -1,4 +1,6 @@
-import '../data_provider/user_provider.dart';
+
+import 'package:last/Auth/data%20provider/user_provider.dart';
+
 import '../models/user.dart';
 
 import '../bloc/auth_bloc.dart';
