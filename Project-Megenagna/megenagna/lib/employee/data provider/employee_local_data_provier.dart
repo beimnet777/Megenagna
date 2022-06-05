@@ -10,15 +10,43 @@ class EmployeeDataProvider {
   Future getEmployeeProfile(int id) async {
     final prefs = await SharedPreferences.getInstance();
     final String? token = prefs.getString('token');
-    final response = await http
-        .get(Uri.parse('http://localhost:8000/api/v1/model/employee/$id/'),
-        headers: <String, String>{
+    final response = await http.get(
+      Uri.parse('http://localhost:8000/api/v1/model/employee/$id/'),
+      headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': 'Bearer $token'
       },
     );
     if (response.statusCode == 200) {
-      return Employee.fromJson(response.body);
+      return Employee.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception("failed to load Employee");
+    }
+  }
+
+  Future<List<Employee>> getAllProfiles() async {
+    final prefs = await SharedPreferences.getInstance();
+    final String? token = prefs.getString('token');
+    final response = await http.get(
+      Uri.parse('http://localhost:8000/api/v1/model/employee/'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer $token'
+      },
+    );
+    List<Employee> allEmps = [];
+    if (response.statusCode == 200) {
+      print(response.body);
+      final decodedJson = jsonDecode(response.body);
+      print(decodedJson);
+      for (Map<String, dynamic> em in decodedJson) {
+        var temp = Employee.fromJson(em);
+        allEmps.add(temp);
+      }
+      if (allEmps.isEmpty) {
+        throw Exception("No profile Found");
+      }
+      return allEmps;
     } else {
       throw Exception("failed to load Employee");
     }
@@ -35,8 +63,9 @@ class EmployeeDataProvider {
       },
       body: jsonEncode(employee.toJson()),
     );
-    if (response.statusCode == 200) {
-      return Employee.fromJson(response.body);
+    print(jsonDecode(response.body));
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return Employee.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed to load Employee');
     }
@@ -54,14 +83,14 @@ class EmployeeDataProvider {
       body: jsonEncode(employee.toJson()),
     );
 
-    Map<String, dynamic> newJson = jsonDecode(response.body);
-    print(employee.toJson());
-    print(newJson);
+    /// Map<String, dynamic> newJson = jsonDecode(jsonDecode(response.body));
+    // print(employee.toJson());
+    // print(newJson);
 
     if (response.statusCode == 200 ||
         response.statusCode == 204 ||
         response.statusCode == 201) {
-      return Employee.fromJson(response.body);
+      return Employee.fromJson(jsonDecode(response.body));
     } else {
       throw Exception("Failed to load Employee");
     }

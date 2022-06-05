@@ -29,6 +29,13 @@ class Profile extends StatelessWidget {
                   child: Text("Loading..."),
                 ),
               );
+            } else if (state is LoadFailed) {
+              return Container(
+                child: Center(
+                  child: Text(
+                      "No Profile Created please press the edit button to create one!"),
+                ),
+              );
             } else if (state is Loaded) {
               return Container(
                 color: Colors.blue[800],

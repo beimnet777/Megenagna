@@ -18,4 +18,13 @@ class EmployeeRepository {
   update(Employee employee) {
     return this.employeeProvider.editEmployeeProfile(employee);
   }
+
+  getByUserId(int id) async {
+    List<Employee> allemps = await this.employeeProvider.getAllProfiles();
+    for (Employee emp in allemps) {
+      if (emp.user == id) {
+        return emp;
+      }
+    }
+  }
 }

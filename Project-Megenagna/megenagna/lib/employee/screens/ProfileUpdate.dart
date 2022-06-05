@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:last/employee/models/employee.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'blocs/profile _update_blocs/profile _update_blocs/profile_updater_bloc.dart';
 import '../blocs/profile _update_blocs/save_event.dart';
 import '../blocs/profile _update_blocs/profile_updater_bloc.dart';
@@ -294,13 +295,14 @@ class ProfileUpdate extends StatelessWidget {
                         temp = Text("saved");
                       }
                       return ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async {
                           final formValid = formKey.currentState!.validate();
                           if (!formValid) {
                             return;
                           }
+                          final prefs = await SharedPreferences.getInstance();
                           final Employee emp = Employee(
-                            3,
+                            prefs.getInt('id')!,
                             1,
                             nameController.text,
                             ageController.text,
@@ -308,6 +310,10 @@ class ProfileUpdate extends StatelessWidget {
                             descController.text,
                             int.parse(gpaController.text),
                             degreeNameController.text,
+                            "skills",
+                            "skils",
+                            "asknd",
+                            "aksdn",
                             sexController.text,
                           );
 

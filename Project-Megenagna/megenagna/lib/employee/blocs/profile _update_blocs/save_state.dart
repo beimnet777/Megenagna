@@ -10,6 +10,8 @@ class Saved extends SaveState {}
 
 class Loading extends SaveState {}
 
+class LoadFailed extends SaveState {}
+
 class Loaded extends SaveState {
   final Employee employee;
 

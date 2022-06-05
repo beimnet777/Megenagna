@@ -20,7 +20,7 @@ class ProfileUpdaterBloc extends Bloc<PressedEvent, SaveState> {
         this.employeeRepository.get(event.employee.id);
         await this.employeeRepository.update((event.employee));
       } catch (Exception) {
-        print(event.employee.employee_age);
+        print(event.employee.id);
         await this.employeeRepository.create(event.employee);
       }
     }
@@ -28,11 +28,14 @@ class ProfileUpdaterBloc extends Bloc<PressedEvent, SaveState> {
     emit(Saved());
   }
 
-  void _onLoad(PressedEvent event, Emitter emit) async {
+  void _onLoad(Load event, Emitter emit) async {
     emit(Loading());
-    if (event is Load) {
-      Employee emp = await this.employeeRepository.get(event.id) as Employee;
+    try {
+      Employee emp =
+          await this.employeeRepository.getByUserId(event.id) as Employee;
       emit(Loaded(emp));
+    } catch (Exceptions) {
+      emit(LoadFailed());
     }
   }
 }
