@@ -17,8 +17,9 @@ class CompanyProfile_State extends State<CompanyProfile> {
         //   "MYNERGY",
         //   style: TextStyle(color: Colors.black),
         // ),
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 246, 246, 246),
         iconTheme: IconThemeData(color: Colors.black),
+        elevation: 0,
         // actions: [
         //   IconButton(
         //       onPressed: () {
