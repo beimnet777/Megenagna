@@ -49,7 +49,7 @@ class Statistics extends StatelessWidget {
                   data = state.data;
                   return Container(
                       height: MediaQuery.of(context).size.height * 0.9,
-                      width: MediaQuery.of(context).size.width * 0.8,
+                      width: MediaQuery.of(context).size.width * 1,
                       color: Colors.white,
                       child: ListView(
                         children: [
@@ -64,91 +64,108 @@ class Statistics extends StatelessWidget {
                                     child: Container(),
                                   )
                                 ]),
-                                Container(
-                                  height: (state.data['age_18_29'] +
-                                          state.data['age_30_50'] +
-                                          state.data['age_51']) +
-                                      20,
-                                  child: Row(children: [
+                                Row(
+                                  children: [
+                                    Expanded(child: Container()),
                                     Container(
-                                      width: 70,
                                       height: (state.data['age_18_29'] +
                                               state.data['age_30_50'] +
                                               state.data['age_51']) +
-                                          15,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          Container(
-                                            height: (state.data['age_18_29'] /
-                                                        (state.data[
-                                                                'age_18_29'] +
-                                                            state.data[
-                                                                'age_30_50'] +
-                                                            state.data[
-                                                                'age_51'])) *
-                                                    10 +
-                                                2,
-                                            width: 15,
+                                          150,
+                                      child: Row(children: [
+                                        Container(
+                                          width: 70,
+                                          height: (state.data['age_18_29'] +
+                                                  state.data['age_30_50'] +
+                                                  state.data['age_51']) +
+                                              100,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Container(
+                                                height: ((state.data[
+                                                                    'age_18_29'] +
+                                                                1) /
+                                                            (state.data[
+                                                                    'age_30_50'] +
+                                                                state.data[
+                                                                    'age_18_29'] +
+                                                                state.data[
+                                                                    'age_51'] +
+                                                                1)) *
+                                                        10 +
+                                                    2,
+                                                width: 15,
+                                                color: Colors.blue,
+                                              ),
+                                              Text("18 - 29")
+                                            ],
                                           ),
-                                          Text("18-29")
-                                        ],
-                                      ),
+                                        ),
+                                        Container(
+                                          width: 70,
+                                          height: (state.data['age_18_29'] +
+                                                  state.data['age_30_50'] +
+                                                  state.data['age_51']) +
+                                              100,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Container(
+                                                height: ((state.data[
+                                                                    'age_30_50'] +
+                                                                1) /
+                                                            (state.data[
+                                                                    'age_30_50'] +
+                                                                state.data[
+                                                                    'age_18_29'] +
+                                                                state.data[
+                                                                    'age_51'] +
+                                                                1)) *
+                                                        10 +
+                                                    2,
+                                                color: Colors.blue,
+                                                width: 15,
+                                              ),
+                                              Text("30 - 50")
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          width: 70,
+                                          height: (state.data['age_18_29'] +
+                                                  state.data['age_30_50'] +
+                                                  state.data['age_51']) +
+                                              100,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Container(
+                                                height: ((state.data['age_51'] +
+                                                                1) /
+                                                            (state.data[
+                                                                    'age_30_50'] +
+                                                                state.data[
+                                                                    'age_18_29'] +
+                                                                state.data[
+                                                                    'age_51'] +
+                                                                1)) *
+                                                        10 +
+                                                    2,
+                                                width: 15,
+                                                color: Colors.blue,
+                                              ),
+                                              Text(">51")
+                                            ],
+                                          ),
+                                        )
+                                      ]),
                                     ),
-                                    Container(
-                                      width: 70,
-                                      height: (state.data['age_18_29'] +
-                                              state.data['age_30_50'] +
-                                              state.data['age_51']) +
-                                          15,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          Container(
-                                            height: (state.data['age_30_50'] /
-                                                        (state.data[
-                                                                'age_18_29'] +
-                                                            state.data[
-                                                                'age_30_50'] +
-                                                            state.data[
-                                                                'age_51'])) *
-                                                    10 +
-                                                2,
-                                            width: 15,
-                                          ),
-                                          Text("30-50")
-                                        ],
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 70,
-                                      height: (state.data['age_18_29'] +
-                                              state.data['age_30_50'] +
-                                              state.data['age_51']) +
-                                          15,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          Container(
-                                            height: (state.data['age_51'] /
-                                                        (state.data[
-                                                                'age_18_29'] +
-                                                            state.data[
-                                                                'age_30_50'] +
-                                                            state.data[
-                                                                'age_51'])) *
-                                                    10 +
-                                                2,
-                                            width: 15,
-                                          ),
-                                          Text("51<")
-                                        ],
-                                      ),
-                                    )
-                                  ]),
+                                    Expanded(child: Container()),
+                                  ],
                                 )
                               ]),
                             ),
@@ -167,58 +184,71 @@ class Statistics extends StatelessWidget {
                                     child: Container(),
                                   )
                                 ]),
-                                Container(
-                                  height: (state.data['male'] +
-                                          state.data['female']) +
-                                      20,
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        width: 70,
-                                        height: (state.data['male'] +
-                                                state.data['female']) +
-                                            15,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            Container(
-                                              height: (state.data['male'] /
-                                                          (state.data['male'] +
-                                                              state.data[
-                                                                  'female'])) *
-                                                      10 +
-                                                  2,
-                                              width: 15,
-                                            ),
-                                            Text("Male")
-                                          ],
+                                Row(
+                                  children: [
+                                    Expanded(child: Container()),
+                                    Container(
+                                      height: (state.data['experience_0_2'] +
+                                              state.data['experience_2_5'] +
+                                              state.data['experience_6']) +
+                                          150,
+                                      child: Row(children: [
+                                        Container(
+                                          width: 70,
+                                          height: (state.data['male'] +
+                                                  state.data['female']) +
+                                              100,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Container(
+                                                height: ((state.data['female'] +
+                                                                1) /
+                                                            (state.data[
+                                                                    'male'] +
+                                                                state.data[
+                                                                    'female'] +
+                                                                1)) *
+                                                        10 +
+                                                    2,
+                                                color: Colors.blue,
+                                                width: 15,
+                                              ),
+                                              Text("Female")
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      Container(
-                                        width: 70,
-                                        height: (state.data['male'] +
-                                                state.data['female']) +
-                                            15,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            Container(
-                                              height: (state.data['female'] /
-                                                          (state.data['male'] +
-                                                              state.data[
-                                                                  'female'])) *
-                                                      10 +
-                                                  2,
-                                              width: 15,
-                                            ),
-                                            Text("Female")
-                                          ],
+                                        Container(
+                                          width: 70,
+                                          height: (state.data['male'] +
+                                                  state.data['female']) +
+                                              100,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Container(
+                                                height: ((state.data['male'] +
+                                                                1) /
+                                                            (state.data[
+                                                                    'male'] +
+                                                                state.data[
+                                                                    'female'] +
+                                                                1)) *
+                                                        10 +
+                                                    2,
+                                                color: Colors.blue,
+                                                width: 15,
+                                              ),
+                                              Text("Male")
+                                            ],
+                                          ),
                                         ),
-                                      )
-                                    ],
-                                  ),
+                                      ]),
+                                    ),
+                                    Expanded(child: Container()),
+                                  ],
                                 )
                               ]),
                             ),
@@ -237,94 +267,112 @@ class Statistics extends StatelessWidget {
                                     child: Container(),
                                   )
                                 ]),
-                                Container(
-                                  height: (state.data['experience_0_2'] +
-                                          state.data['experience_2_5'] +
-                                          state.data['experience_6']) +
-                                      20,
-                                  child: Row(children: [
+                                Row(
+                                  children: [
+                                    Expanded(child: Container()),
                                     Container(
-                                      width: 70,
                                       height: (state.data['experience_0_2'] +
                                               state.data['experience_2_5'] +
                                               state.data['experience_6']) +
-                                          15,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          Container(
-                                            height: (state.data[
-                                                            'experience_0_2'] /
-                                                        (state.data[
-                                                                'experience_0_2'] +
-                                                            state.data[
-                                                                'experience_2_5'] +
-                                                            state.data[
-                                                                'experience_6'])) *
-                                                    10 +
-                                                2,
-                                            width: 15,
+                                          150,
+                                      child: Row(children: [
+                                        Container(
+                                          width: 70,
+                                          height: (state
+                                                      .data['experience_0_2'] +
+                                                  state.data['experience_2_5'] +
+                                                  state.data['experience_6']) +
+                                              100,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Container(
+                                                height: ((state.data[
+                                                                    'experience_0_2'] +
+                                                                1) /
+                                                            (state.data[
+                                                                    'experience_0_2'] +
+                                                                state.data[
+                                                                    'experience_2_5'] +
+                                                                state.data[
+                                                                    'experience_6'] +
+                                                                1)) *
+                                                        10 +
+                                                    2,
+                                                width: 15,
+                                                color: Colors.blue,
+                                              ),
+                                              Text("0-2 Years")
+                                            ],
                                           ),
-                                          Text("Junior(0-2 Years)")
-                                        ],
-                                      ),
+                                        ),
+                                        Container(
+                                          width: 70,
+                                          height: (state
+                                                      .data['experience_0_2'] +
+                                                  state.data['experience_2_5'] +
+                                                  state.data['experience_6']) +
+                                              100,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Container(
+                                                height: ((state.data[
+                                                                    'experience_2_5'] +
+                                                                1) /
+                                                            (state.data[
+                                                                    'experience_0_2'] +
+                                                                state.data[
+                                                                    'experience_2_5'] +
+                                                                state.data[
+                                                                    'experience_6'] +
+                                                                1)) *
+                                                        10 +
+                                                    2,
+                                                color: Colors.blue,
+                                                width: 15,
+                                              ),
+                                              Text("2-5 Years")
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          width: 70,
+                                          height: (state
+                                                      .data['experience_0_2'] +
+                                                  state.data['experience_2_5'] +
+                                                  state.data['experience_6']) +
+                                              100,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Container(
+                                                height: ((state.data[
+                                                                    'experience_6'] +
+                                                                1) /
+                                                            (state.data[
+                                                                    'experience_0_2'] +
+                                                                state.data[
+                                                                    'experience_2_5'] +
+                                                                state.data[
+                                                                    'experience_6'] +
+                                                                1)) *
+                                                        10 +
+                                                    2,
+                                                width: 15,
+                                                color: Colors.blue,
+                                              ),
+                                              Text(">5 years")
+                                            ],
+                                          ),
+                                        )
+                                      ]),
                                     ),
-                                    Container(
-                                      width: 70,
-                                      height: (state.data['experience_0_2'] +
-                                              state.data['experience_2_5'] +
-                                              state.data['experience_6']) +
-                                          15,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          Container(
-                                            height: (state.data[
-                                                            'experience_2_5'] /
-                                                        (state.data[
-                                                                'experience_0_2'] +
-                                                            state.data[
-                                                                'experience_2_5'] +
-                                                            state.data[
-                                                                'experience_6'])) *
-                                                    10 +
-                                                2,
-                                            width: 15,
-                                          ),
-                                          Text("Junior(2-5 Years)")
-                                        ],
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 70,
-                                      height: (state.data['experience_0_2'] +
-                                              state.data['experience_2_5'] +
-                                              state.data['experience_6']) +
-                                          15,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          Container(
-                                            height: (state.data[
-                                                            'experience_6'] /
-                                                        (state.data[
-                                                                'experience_0_2'] +
-                                                            state.data[
-                                                                'experience_2_5'] +
-                                                            state.data[
-                                                                'experience_6'])) *
-                                                    10 +
-                                                2,
-                                            width: 15,
-                                          ),
-                                          Text("Junior(>5 years)")
-                                        ],
-                                      ),
-                                    )
-                                  ]),
+                                    Expanded(child: Container()),
+                                  ],
                                 )
                               ]),
                             ),
@@ -344,96 +392,110 @@ class Statistics extends StatelessWidget {
                                       child: Container(),
                                     )
                                   ]),
-                                  Container(
-                                      height: (state.data['gpa_3_3_5'] +
-                                              state.data['gpa_3'] +
-                                              state.data['gpa_3_5_4']) +
-                                          20,
-                                      child: Row(
-                                        children: [
+                                  Row(
+                                    children: [
+                                      Expanded(child: Container()),
+                                      Container(
+                                        height: (state.data['gpa_3_5_4'] +
+                                                state.data['gpa_3_3_5'] +
+                                                state.data['gpa_3']) +
+                                            150,
+                                        child: Row(children: [
                                           Container(
                                             width: 70,
-                                            height: (state.data['gpa_3_3_5'] +
-                                                    state.data['gpa_3'] +
-                                                    state.data['gpa_3_5_4']) +
-                                                15,
+                                            height: (state.data['gpa_3_5_4'] +
+                                                    state.data['gpa_3_3_5'] +
+                                                    state.data['gpa_3']) +
+                                                100,
                                             child: Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.end,
                                               children: [
                                                 Container(
-                                                  height: (state.data[
-                                                                  'gpa_3_5_4'] /
+                                                  height: ((state.data[
+                                                                      'gpa_3_5_4'] +
+                                                                  1) /
                                                               (state.data[
+                                                                      'gpa_3_5_4'] +
+                                                                  state.data[
                                                                       'gpa_3_3_5'] +
                                                                   state.data[
                                                                       'gpa_3'] +
-                                                                  state.data[
-                                                                      'gpa_3_5_4'])) *
+                                                                  1)) *
                                                           10 +
                                                       2,
                                                   width: 15,
+                                                  color: Colors.blue,
                                                 ),
-                                                Text("3.5 - 4")
+                                                Text("3.5-4.0")
                                               ],
                                             ),
                                           ),
                                           Container(
                                             width: 70,
-                                            height: (state.data['gpa_3_3_5'] +
-                                                    state.data['gpa_3'] +
-                                                    state.data['gpa_3_5_4']) +
-                                                15,
+                                            height: (state.data['gpa_3_5_4'] +
+                                                    state.data['gpa_3_3_5'] +
+                                                    state.data['gpa_3']) +
+                                                100,
                                             child: Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.end,
                                               children: [
                                                 Container(
-                                                  height: (state.data[
-                                                                  'gpa_3_3_5'] /
+                                                  height: ((state.data[
+                                                                      'gpa_3_3_5'] +
+                                                                  1) /
                                                               (state.data[
+                                                                      'gpa_3_5_4'] +
+                                                                  state.data[
                                                                       'gpa_3_3_5'] +
                                                                   state.data[
                                                                       'gpa_3'] +
-                                                                  state.data[
-                                                                      'gpa_3_5_4'])) *
+                                                                  1)) *
                                                           10 +
                                                       2,
+                                                  color: Colors.blue,
                                                   width: 15,
                                                 ),
-                                                Text("3.0 - 3.5")
+                                                Text("3.0-3.5")
                                               ],
                                             ),
                                           ),
                                           Container(
                                             width: 70,
-                                            height: (state.data['gpa_3_3_5'] +
-                                                    state.data['gpa_3'] +
-                                                    state.data['gpa_3_5_4']) +
-                                                15,
+                                            height: (state.data['gpa_3_5_4'] +
+                                                    state.data['gpa_3_3_5'] +
+                                                    state.data['gpa_3']) +
+                                                100,
                                             child: Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.end,
                                               children: [
                                                 Container(
-                                                  height: (state.data[
-                                                                  'gpa_3_5_4'] /
+                                                  height: ((state.data[
+                                                                      'gpa_3'] +
+                                                                  1) /
                                                               (state.data[
+                                                                      'gpa_3_5_4'] +
+                                                                  state.data[
                                                                       'gpa_3_3_5'] +
                                                                   state.data[
                                                                       'gpa_3'] +
-                                                                  state.data[
-                                                                      'gpa_3_5_4'])) *
+                                                                  1)) *
                                                           10 +
                                                       2,
                                                   width: 15,
+                                                  color: Colors.blue,
                                                 ),
-                                                Text(" <3.0")
+                                                Text("<3.0")
                                               ],
                                             ),
-                                          ),
-                                        ],
-                                      ))
+                                          )
+                                        ]),
+                                      ),
+                                      Expanded(child: Container()),
+                                    ],
+                                  )
                                 ],
                               ),
                             ),
