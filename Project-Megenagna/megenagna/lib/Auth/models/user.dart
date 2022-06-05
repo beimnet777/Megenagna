@@ -10,8 +10,7 @@ class User {
   int type;
 
   User(this.id, this.username, this.password, this.first_name, this.last_name,
-      this.email,
-      {this.type = 0});
+      this.email, this.type);
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
@@ -21,16 +20,27 @@ class User {
       json['first_name'],
       json['last_name'],
       json['email'],
+      0,
     );
   }
 
-  Map<String, String> jsonify(User user) {
-    return <String, String>{
-      'username': user.username,
-      'password': user.password,
-      'first_name': user.first_name,
-      'last_name': user.last_name,
-      'email': user.email
-    };
+  Map<String, String> toJson() => {
+        'first_name': first_name,
+        'last_name': last_name,
+        'email': email,
+        'username': username,
+        'password': password,
+      };
+}
+
+class UserData {
+  final String username;
+  final String password;
+  final int type;
+  UserData(this.username, this.password, {this.type = 0});
+  factory UserData.fromJson(Map<String, dynamic> json) {
+    return UserData(json['username'], json['password']);
   }
+
+  Map<String, String> toJson() => {'username': username, 'password': password};
 }
