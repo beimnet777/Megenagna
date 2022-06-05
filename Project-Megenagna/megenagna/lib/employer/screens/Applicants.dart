@@ -109,7 +109,55 @@ class ApplicantsList extends StatelessWidget {
                                           Text(
                                               "GPA: ${state.applicants[index].gpa.toString()}"), // edu level
                                           Text(
-                                              "Experience years: ${state.applicants[index].app_experience_years.toString()}"), //experience
+                                              "Experience years: ${state.applicants[index].app_experience_years.toString()}"),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Container(
+                                                width: 80,
+                                                height: 30,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.green[300],
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5)),
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    //set status to 1
+                                                  },
+                                                  child: Center(
+                                                    child: Text(
+                                                      "Accept",
+                                                      style: TextStyle(
+                                                          color: Colors.white),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Container(
+                                                width: 80,
+                                                height: 30,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.green[300],
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5)),
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    //set status to 2
+                                                  },
+                                                  child: Center(
+                                                    child: Text(
+                                                      "Deny",
+                                                      style: TextStyle(
+                                                          color: Colors.white),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          )
                                         ],
                                       ),
                                     ],
