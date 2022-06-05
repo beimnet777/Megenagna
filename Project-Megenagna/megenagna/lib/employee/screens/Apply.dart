@@ -134,6 +134,8 @@ class Apply extends StatelessWidget {
 
                         if (state is Saving) {
                           adaptiveText = "Applying...";
+                        } else if (state is ApplyFailed) {
+                          adaptiveText = "failed";
                         }
 
                         return InkWell(

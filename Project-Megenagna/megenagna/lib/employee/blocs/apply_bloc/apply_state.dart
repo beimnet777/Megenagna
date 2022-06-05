@@ -14,6 +14,8 @@ class ApplyFailed extends ApplyState {}
 
 class LoadingApplication extends ApplyState {}
 
+class LoadingFailed extends ApplyState {}
+
 class LoadedApplication extends ApplyState {
   List<Application> apps;
   List<Job> jobs;

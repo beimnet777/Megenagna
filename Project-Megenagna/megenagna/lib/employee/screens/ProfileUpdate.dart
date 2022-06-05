@@ -291,6 +291,8 @@ class ProfileUpdate extends StatelessWidget {
                       Widget temp = const Text("SAVE");
                       if (state is Saving) {
                         temp = Text("saving..");
+                      } else if (state is SavingFailed) {
+                        temp = Text("Failed!");
                       } else if (state is Saved) {
                         temp = Text("saved");
                       }

@@ -7,6 +7,8 @@ class Idle extends JobState {}
 
 class LoadingJobs extends JobState {}
 
+class LoadingFailed extends JobState {}
+
 class LoadedJobs extends JobState {
   final List<Job> jobs;
   final List<Employer> emps;

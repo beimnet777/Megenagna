@@ -25,19 +25,26 @@ void _applyHandler(ApplyEvent event, Emitter emit) async {
   print("in bloc func");
   emit(Saving());
 
-  final apps = await applicationRepository.getApplicationByApplier(
-      event.application.job, event.application.user);
-  if (apps == null) {
-  final apps = await applicationProvider.createApplication(event.application);
+  try {
+    final apps = await applicationRepository.getApplicationByApplier(
+        event.application.job, event.application.user);
+    if (apps == null) {
+      final apps =
+          await applicationProvider.createApplication(event.application);
+    }
+    emit(ApplySuccesfull());
+  } catch (Exceptions) {
+    emit(ApplyFailed());
   }
-  emit(ApplySuccesfull());
 }
 
 void _loadHandler(LoadEvents event, Emitter emit) async {
   emit(LoadingApplication());
-  print("in loader");
-  final everything = await applicationRepository.getApplicationById(event.id);
-  print("got id");
-  emit(LoadedApplication(
-      apps: everything[0], jobs: everything[1], emps: everything[2]));
+  try {
+    final everything = await applicationRepository.getApplicationById(event.id);
+    emit(LoadedApplication(
+        apps: everything[0], jobs: everything[1], emps: everything[2]));
+  } catch (Exceptions) {
+    emit(LoadingFailed());
+  }
 }

@@ -23,7 +23,14 @@ class Feed extends StatelessWidget {
               child: Text("Loading..."),
             ),
           );
-        } else if (state is LoadedJobs) {
+        } else if(state is LoadingFailed){
+          return Container(
+            child: Center(
+              child: Text("unable to load avialable Jobs. please reload.."),
+            ),
+          );
+        }
+        else if (state is LoadedJobs) {
           return Column(
             children: [
               SizedBox(

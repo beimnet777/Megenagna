@@ -1,4 +1,3 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:last/employee/blocs/job_bloc/job_event.dart';
 import 'package:last/employee/blocs/job_bloc/job_state.dart';
@@ -19,6 +18,10 @@ class JobBloc extends Bloc<LoadJoabs, JobState> {
 
 void _LoadHandler(LoadJoabs event, Emitter emit) async {
   emit(LoadingJobs());
-  List everything = await jobRepository.get();
-  emit(LoadedJobs(everything[0], everything[1]));
+  try {
+    List everything = await jobRepository.get();
+    emit(LoadedJobs(everything[0], everything[1]));
+  } catch (Exceptions) {
+    emit(LoadingFailed());
+  }
 }

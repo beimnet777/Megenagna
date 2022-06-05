@@ -21,6 +21,13 @@ class newStatus extends StatelessWidget {
               child: Text("Loading..."),
             ),
           );
+        } else if (state is LoadingFailed) {
+          return Container(
+            child: Center(
+              child:
+                  Text("unable to load pending Applications. Please Reload.."),
+            ),
+          );
         } else if (state is LoadedApplication) {
           return Column(
             children: [
