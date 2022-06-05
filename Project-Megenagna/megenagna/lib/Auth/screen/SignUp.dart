@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project/Auth/bloc/auth_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:last/employee/blocs/profile%20_update_blocs/save_state.dart';
+import '../bloc/radiobloc/radiobloc.dart';
+import '../bloc/radiobloc/radioevent.dart';
+import '/Auth/bloc/auth_bloc.dart';
 
 class SignupScreen extends StatelessWidget {
-  SignupScreen({Key? key}) : super(key: key);
+  int value = 1;
 
   final OutlineInputBorder border = const OutlineInputBorder(
       borderSide:
@@ -45,6 +49,7 @@ class SignupScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             TextFormField(
+              controller: firstNamectrl,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return "please fill in the field";
@@ -59,6 +64,7 @@ class SignupScreen extends StatelessWidget {
               height: 10,
             ),
             TextFormField(
+              controller: lastNamectrl,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return "please enter your last name";
@@ -73,6 +79,7 @@ class SignupScreen extends StatelessWidget {
               height: 10,
             ),
             TextFormField(
+              controller: emailCtrl,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return "please enter your email";
@@ -89,6 +96,7 @@ class SignupScreen extends StatelessWidget {
               height: 10,
             ),
             TextFormField(
+              controller: addressCtrl,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please Enter your Address';
@@ -123,8 +131,8 @@ class SignupScreen extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             TextFormField(
-              validator:(value) {
-                if (value != passwordCtrl.text){
+              validator: (value) {
+                if (value != passwordCtrl.text) {
                   return 'Passwords are not same';
                 }
               },
@@ -139,33 +147,112 @@ class SignupScreen extends StatelessWidget {
                 hintText: "Confirm Password",
               ),
             ),
+            BlocConsumer<RadioBloc, int>(
+              listener: (context, state) => {},
+              builder: (context, state) {
+                value = state;
+                return Row(
+                  children: [
+                    Expanded(child: Container()),
+                    Row(
+                      children: [
+                        Radio(
+                            value: 1,
+                            groupValue: value,
+                            onChanged: (_) {
+                              BlocProvider.of<RadioBloc>(context)
+                                  .add(RadioPressed(value));
+                            }),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text("Employer"),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Row(
+                      children: [
+                        Radio(
+                            value: 2,
+                            groupValue: value,
+                            onChanged: (_) {
+                              BlocProvider.of<RadioBloc>(context)
+                                  .add(RadioPressed(value));
+                            }),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text("Company"),
+                      ],
+                    ),
+                    Expanded(child: Container())
+                  ],
+                );
+              },
+            ),
             const SizedBox(height: 10),
+            BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
+              if (state is ToProfile) {
+                print("i am here");
+                if (value == 1) {
+                  Router.navigate(context, () {
+                    context.go("/user/home/profileupdate");
+                  });
+                } else if (value == 2) {
+                  context.go("/CreateHostProfile");
+                }
+              }
+            }, builder: (context, state) {
+              final String firstName = firstNamectrl.text;
+              final String lastName = lastNamectrl.text;
+              final String email = emailCtrl.text;
+              final String username = addressCtrl.text;
+              final String password = passwordCtrl.text;
+              print(firstNamectrl.text);
+              print(firstName);
+
+              // print(lastNamectrl.text);
+              print(lastName);
+              print("here");
+              // print(addressCtrl.text);
+              print(username);
+
+              return ElevatedButton(
+                  onPressed: () {
+                    if (_SignUpKey.currentState!.validate()) {
+                      BlocProvider.of<AuthBloc>(context).add(Register(
+                          firstName: firstNamectrl.text,
+                          lastName: lastNamectrl.text,
+                          email: emailCtrl.text,
+                          username: addressCtrl.text,
+                          password: passwordCtrl.text,
+                          type: value));
+                    }
+                  },
+                  child: const Text('Register'));
+            }),
             BlocConsumer<AuthBloc, AuthState>(
-                listener: (context, state) => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Scaffold(
-                            body: Center(child: Text('signed Up whoooooo'))))),
                 builder: (context, state) {
-                  final String firstName = firstNamectrl.text;
-                  final String lastName = lastNamectrl.text;
-                  final String email = emailCtrl.text;
-                  final String address = addressCtrl.text;
-                  final String password = passwordCtrl.text;
-                  return ElevatedButton(
-                      onPressed: () => {
-                            if (_SignUpKey.currentState!.validate())
-                              {
-                                BlocProvider.of<AuthBloc>(context).add(Register(
-                                    firstName: firstName,
-                                    lastName: lastName,
-                                    email: email,
-                                    address: address,
-                                    password: password))
-                              }
-                          },
-                      child: const Text('Register'));
-                })
+                  Widget text;
+                  if (state is SigningUpFailed) {
+                    return Row(
+                      children: [
+                        Expanded(child: Container()),
+                        Text(
+                          "SignUp in Failed",
+                          style: TextStyle(color: Colors.redAccent),
+                        ),
+                        Expanded(child: Container()),
+                      ],
+                    );
+                  }
+                  return Row(
+                    children: [],
+                  );
+                },
+                listener: (context, state) {})
           ],
         ),
       ),
