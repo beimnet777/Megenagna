@@ -18,6 +18,12 @@ class ApplicantsBloc extends Bloc<ApplicantsEvent, ApplicantsState> {
   void _load(ApplicantsEvent event, Emitter emit) async {
     emit(LoadingApplicants());
     int id = 0;
+    if (event is LoadApplicants) {
+      id = event.id;
+    }
+    print("-============================-");
+    print(id);
+    print("-============================-");
     var apps = await jobRepo.getAllApplicants(id);
     if (apps == 0) {
       emit(LoadingFailed());
