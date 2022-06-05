@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);
@@ -24,22 +25,24 @@ class Settings extends StatelessWidget {
             onTap: () {
               //add go_route to profile update page
             },
-            title: Text("Notifications"),
-            leading: Icon(Icons.notifications_none),
-          ),
-          ListTile(
-            onTap: () {
-              //add go_route to profile update page
-            },
-            title: Text("FAQ"),
+            title: Text("About us"),
             leading: Icon(Icons.help_center),
           ),
           ListTile(
             onTap: () {
-              //add go_route to profile update page
+              context.go('/');
             },
             title: Text("Logout"),
-            leading: Icon(Icons.logout),
+            leading: Icon(Icons.logout_outlined),
+          ),
+          ListTile(
+            onTap: () async {
+              final prefs = await SharedPreferences.getInstance();
+              await prefs.clear();
+              context.go('/');
+            },
+            title: Text("Delete Account"),
+            leading: Icon(Icons.delete),
           ),
         ],
       ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:megenagna/employee/screens/Profile.dart';
+import 'package:last/employee/models/employee.dart';
 // import 'blocs/profile _update_blocs/profile _update_blocs/profile_updater_bloc.dart';
 import '../blocs/profile _update_blocs/save_event.dart';
 import '../blocs/profile _update_blocs/profile_updater_bloc.dart';
@@ -15,28 +15,22 @@ import '../blocs/profile _update_blocs/save_event.dart';
 class ProfileUpdate extends StatelessWidget {
   //controlers for the form are below this line
   final nameController = TextEditingController();
-  final phoneController = TextEditingController();
-  final emailController = TextEditingController();
-  final countryController = TextEditingController();
-  final cityController = TextEditingController();
-  final educationLevelController = TextEditingController();
-  final fieldController = TextEditingController();
-  final descriptionController = TextEditingController();
+  final ageController = TextEditingController();
+  final specController = TextEditingController();
+  final descController = TextEditingController();
+  final gpaController = TextEditingController();
+  final degreeNameController = TextEditingController();
+  final sexController = TextEditingController();
   //conterllers end here
 
   //form variables start here
   final name = "Belete Mamo";
-  final phoneNumber = "+25134529375";
-  final emailAddress = "BeleteMamo@email.com";
-  final country = "Ethipia";
-  final city = "Mekele";
-  final educationLevel = "Masters";
-  final field = "MEchanical Engineer";
-  final selfDescription =
-      "asdfhklhk daskjhkjlasfd sadkfjh sdakjfhas sdahjkfa jksdhkjhads asdjkfhaksjdfh asdhfjkhasjkdlfhkjaafjhasfjk asjkhfjksah asjkfaskj a sj askjfhksajdfhkja jkahsd fasjkf";
-  //form variables end here
-
-  // key variable in the form
+  final age = "12";
+  final specialization = "AI";
+  final description = "asjdnsajdnas";
+  final gpa = "3";
+  final degree_name = "Masters";
+  final sex = "male";
   final formKey = GlobalKey<FormState>();
   //
   @override
@@ -104,8 +98,8 @@ class ProfileUpdate extends StatelessWidget {
                       ),
                     ),
                     /**
-                             * PHONE NUMBER 
-                             * the next widget is the form field that containts the phone number of the user
+                             * age NUMBER 
+                             * the next widget is the form field that containts the age number of the user
                              * the users previous data will be in as a place holder in the field
                              */
                     Padding(
@@ -113,31 +107,31 @@ class ProfileUpdate extends StatelessWidget {
                       child: Container(
                         height: 50,
                         child: TextFormField(
-                          controller: phoneController,
+                          controller: ageController,
                           keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
-                            hintText: phoneNumber,
+                            hintText: age,
                             // border: OutlineInputBorder()
                           ),
                           validator: (String? phone) {
-                            if (phone == null || phone.isEmpty) {
-                              return "Phone must not be empty";
+                            if (age == null || age.isEmpty) {
+                              return "age must not be empty";
                             }
 
-                            // final phoneTest =
+                            // final ageTest =
                             //     RegExp("/^(^\+251|^251|^0)?9\d{8}\$/");
-                            // final phoneValid = phoneTest.hasMatch(phone);
+                            // final ageValid = ageTest.hasMatch(age);
 
-                            // return phoneValid
+                            // return ageValid
                             //     ? null
-                            //     : "Phone number is incorrect";
+                            //     : "age number is incorrect";
                           },
                         ),
                       ),
                     ),
                     /** 
-                             * EMAIL
-                             * the next widget is the form field that containts the Email of the user
+                             * age
+                             * the next widget is the form field that containts the age of the user
                              * the users previous data will be in as a place holder in the field
                              */
                     Padding(
@@ -145,45 +139,22 @@ class ProfileUpdate extends StatelessWidget {
                       child: Container(
                         height: 50,
                         child: TextFormField(
-                          controller: emailController,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                            hintText: emailAddress,
-                            // border: OutlineInputBorder()
-                          ),
-                          validator: (String? email) {
-                            if (email == null || email.isEmpty) {
-                              return "Email can not be empty";
-                            }
-
-                            bool emailValid = RegExp(
-                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                .hasMatch(email);
-                            return emailValid ? null : "Invalied email address";
-                          },
-                        ),
-                      ),
-                    ),
-                    /** 
-                             * COUNTRY
-                             * the next widget is the form field that containts the counter of the user
-                             * the users previous data will be in as a place holder in the field
-                             */
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                      child: Container(
-                        height: 50,
-                        child: TextFormField(
-                          controller: countryController,
+                          controller: specController,
                           keyboardType: TextInputType.name,
                           decoration: InputDecoration(
-                            hintText: country,
+                            hintText: specialization,
                             // border: OutlineInputBorder()
                           ),
-                          validator: (String? country) {
-                            if (country == null || country.isEmpty) {
-                              return "Country name should not be empty";
+                          validator: (String? age) {
+                            if (age == null || age.isEmpty) {
+                              return "age can not be empty";
                             }
+
+                            // bool ageValid = RegExp(
+                            //         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                            //     .hasMatch(age);
+                            return null;
+                            // ageValid ? null : "Invalied age address";
                           },
                         ),
                       ),
@@ -198,10 +169,11 @@ class ProfileUpdate extends StatelessWidget {
                       child: Container(
                         height: 50,
                         child: TextFormField(
-                          controller: cityController,
+                          controller: descController,
                           keyboardType: TextInputType.name,
                           decoration: InputDecoration(
-                            hintText: city, //border: OutlineInputBorder()
+                            hintText:
+                                description, //border: OutlineInputBorder()
                           ),
                           validator: (String? cityName) {
                             if (cityName == null || cityName.isEmpty) {
@@ -221,10 +193,10 @@ class ProfileUpdate extends StatelessWidget {
                       child: Container(
                         height: 50,
                         child: TextFormField(
-                          controller: educationLevelController,
+                          controller: gpaController,
                           keyboardType: TextInputType.name,
                           decoration: InputDecoration(
-                            hintText: educationLevel,
+                            hintText: gpa,
                             //border: OutlineInputBorder()
                           ),
                           validator: (String? educationLevel) {
@@ -246,10 +218,11 @@ class ProfileUpdate extends StatelessWidget {
                       child: Container(
                         height: 50,
                         child: TextFormField(
-                          controller: fieldController,
+                          controller: degreeNameController,
                           keyboardType: TextInputType.name,
                           decoration: InputDecoration(
-                            hintText: field, //border: OutlineInputBorder()
+                            hintText:
+                                degree_name, //border: OutlineInputBorder()
                           ),
                           validator: (String? field) {
                             if (field == null || field.isEmpty) {
@@ -259,39 +232,61 @@ class ProfileUpdate extends StatelessWidget {
                         ),
                       ),
                     ),
+                    /** 
+                             * COUNTRY
+                             * the next widget is the form field that containts the counter of the user
+                             * the users previous data will be in as a place holder in the field
+                             */
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                       child: Container(
-                        height: 200,
-                        child: SizedBox(
-                          height: 200,
-                          child: TextFormField(
-                            expands: true,
-                            maxLines: null,
-                            controller: descriptionController,
-                            keyboardType: TextInputType.name,
-                            decoration: InputDecoration(
-                              hintText: selfDescription,
-                              //border: OutlineInputBorder()
-                            ),
-                            validator: (String? description) {
-                              if (description == null || description.isEmpty) {
-                                return "Description should not be empty";
-                              }
-                            },
+                        height: 50,
+                        child: TextFormField(
+                          controller: sexController,
+                          keyboardType: TextInputType.name,
+                          decoration: InputDecoration(
+                            hintText: sex,
+                            // border: OutlineInputBorder()
                           ),
+                          validator: (String? country) {
+                            if (country == null || country.isEmpty) {
+                              return "Country name should not be empty";
+                            }
+                          },
                         ),
                       ),
                     ),
+
+                    // Padding(
+                    //   padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                    //   child: Container(
+                    //     height: 200,
+                    //     child: SizedBox(
+                    //       height: 200,
+                    //       child: TextFormField(
+                    //         expands: true,
+                    //         maxLines: null,
+                    //         controller: sexController,
+                    //         keyboardType: TextInputType.name,
+                    //         decoration: InputDecoration(
+                    //           hintText: selfDescription,
+                    //           //border: OutlineInputBorder()
+                    //         ),
+                    //         validator: (String? description) {
+                    //           if (description == null || description.isEmpty) {
+                    //             return "Description should not be empty";
+                    //           }
+                    //         },
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     BlocConsumer<ProfileUpdaterBloc, SaveState>(
                         listener: (context, state) {
-                      print("in the if");
                       if (state is Saved) {
-                        context.go("/user/profile");
+                        context.go("/user/home");
                       }
                     }, builder: (context, state) {
-                      print(state);
-
                       Widget temp = const Text("SAVE");
                       if (state is Saving) {
                         temp = Text("saving..");
@@ -304,17 +299,21 @@ class ProfileUpdate extends StatelessWidget {
                           if (!formValid) {
                             return;
                           }
+                          final Employee emp = Employee(
+                            3,
+                            1,
+                            nameController.text,
+                            ageController.text,
+                            specController.text,
+                            descController.text,
+                            int.parse(gpaController.text),
+                            degreeNameController.text,
+                            sexController.text,
+                          );
+
                           final presseBlock =
                               BlocProvider.of<ProfileUpdaterBloc>(context);
-                          presseBlock.add(Save(
-                              nameController.text,
-                              emailController.text,
-                              phoneController.text,
-                              countryController.text,
-                              cityController.text,
-                              fieldController.text,
-                              educationLevelController.text,
-                              descriptionController.text));
+                          presseBlock.add(Save(employee: emp));
                         },
                         child: temp,
                       );

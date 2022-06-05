@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:last/employee/blocs/job_bloc/job_bloc.dart';
-import 'package:last/employee/blocs/job_bloc/job_state.dart';
+import 'package:last/employee/blocs/apply_bloc/apply_bloc.dart';
+import 'package:last/employee/blocs/apply_bloc/apply_state.dart';
 import 'package:last/employee/blocs/profile%20_update_blocs/profile_updater_bloc.dart';
 import 'package:last/employee/blocs/profile%20_update_blocs/save_event.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'Apply.dart';
 import '../../employer/screens/companyProfile.dart';
 
-class Feed extends StatelessWidget {
-  Feed({Key? key}) : super(key: key);
+class newStatus extends StatelessWidget {
+  newStatus({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    int indexChecker = -1;
-    return BlocBuilder<JobBloc, JobState>(
+    return BlocBuilder<ApplyBloc, ApplyState>(
       builder: (context, state) {
-        if (state is LoadingJobs) {
+        if (state is LoadingApplication) {
           return Container(
             child: Center(
               child: Text("Loading..."),
             ),
           );
-        } else if (state is LoadedJobs) {
+        } else if (state is LoadedApplication) {
           return Column(
             children: [
               SizedBox(
@@ -56,10 +54,9 @@ class Feed extends StatelessWidget {
                         ],
                       )),
                   InkWell(
-                    onTap: (() async {
-                      final prefs = await SharedPreferences.getInstance();
+                    onTap: (() {
                       BlocProvider.of<ProfileUpdaterBloc>(context)
-                          .add(Load(id: prefs.getInt('id')!));
+                          .add(Load(id: 1));
                       context.go("/user/home/profile");
                     }),
                     child: CircleAvatar(
@@ -69,14 +66,91 @@ class Feed extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(height: 5),
-              SizedBox(height: 10),
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0, bottom: 5),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 20,
+                          height: 20,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color.fromRGBO(218, 232, 255, 1)),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text("Pending"),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0, bottom: 5),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 20,
+                          height: 20,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color.fromRGBO(230, 255, 210, 1)),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text("Accepted"),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0, bottom: 5),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 20,
+                          height: 20,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color.fromRGBO(255, 167, 117, 1)),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text("Denied"),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                ],
+              ),
               Expanded(
                 child: Container(
                   child: ListView.builder(
                       itemCount: state.jobs.length,
                       itemBuilder: (context, index) {
-                        print(state.emps.length);
+                        print(state.apps[index].user);
                         return Expanded(
                           child: InkWell(
                             // onTap: () {
@@ -91,7 +165,11 @@ class Feed extends StatelessWidget {
                                 elevation: 5,
                                 margin: EdgeInsets.only(
                                     bottom: 15, left: 15, right: 15),
-                                color: Color.fromRGBO(245, 222, 183, 1),
+                                color: (state.apps[index].status == 3)
+                                    ? Color.fromRGBO(218, 232, 255, 1)
+                                    : (state.apps[index].status == 1)
+                                        ? Color.fromRGBO(230, 255, 210, 1)
+                                        : Color.fromRGBO(255, 167, 117, 1),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -105,7 +183,7 @@ class Feed extends StatelessWidget {
                                         ),
                                         InkWell(
                                           onTap: () {
-                                            context.go("/company/home/profile");
+                                            context.go("/company/profile");
                                           },
                                           child: CircleAvatar(
                                             radius: 20,
@@ -158,47 +236,11 @@ class Feed extends StatelessWidget {
                                               "Education level: ${state.jobs[index].skills_needed_1}"), // edu level
                                           Text(
                                               "Experience: ${state.jobs[index].job_experience_years} Years of experience"), //experience
+                                          SizedBox(
+                                            height: 15,
+                                          )
                                         ],
                                       ),
-                                    ),
-                                    Row(
-                                      children: [
-                                        SizedBox(
-                                          height: 50,
-                                          width: 20,
-                                        ),
-                                        Expanded(
-                                          flex: 1,
-                                          child: InkWell(
-                                            onTap: () {
-                                              context.go('/user/home/apply/${state.jobs[index].id}');
-                                              
-                                            },
-                                            child: Text(
-                                              "APPLY NOW",
-                                              style: TextStyle(
-                                                  color: Colors.blue[700],
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 18.4),
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          flex: 1,
-                                          child: InkWell(
-                                            onTap: () {
-                                              context.go('/more');
-                                            },
-                                            child: Text(
-                                              "MORE >>",
-                                              style: TextStyle(
-                                                  color: Colors.blue[700],
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 18.4),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
                                     ),
                                   ],
                                 ),
@@ -218,6 +260,14 @@ class Feed extends StatelessWidget {
         }
       },
     );
+  }
+
+  _colorPicker(int index) {
+    return index % 3 == 1
+        ? Color.fromRGBO(218, 232, 255, 1)
+        : index % 3 == 2
+            ? Color.fromRGBO(230, 255, 210, 1)
+            : Color.fromRGBO(255, 167, 117, 1);
   }
 }
 

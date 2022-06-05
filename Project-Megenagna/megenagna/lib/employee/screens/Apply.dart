@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:last/employee/models/applications.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Home.dart';
 import '../../employer/screens/companyProfile.dart';
 
@@ -14,8 +16,10 @@ class Apply extends StatelessWidget {
   final degreeCtrl = TextEditingController();
   final ageCtrl = TextEditingController();
   final expCtrl = TextEditingController();
+  final gpaCtrl = TextEditingController();
+  final int num;
+  Apply(this.num);
 
-  Apply({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,6 +101,18 @@ class Apply extends StatelessWidget {
                       },
                     ),
                     TextFormField(
+                      controller: gpaCtrl,
+                      keyboardType: TextInputType.numberWithOptions(),
+                      decoration: InputDecoration(label: Text("GPA:")),
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return "GPA is required";
+                        } else {
+                          return null;
+                        }
+                      },
+                    ),
+                    TextFormField(
                       controller: expCtrl,
                       keyboardType: TextInputType.numberWithOptions(),
                       decoration:
@@ -121,18 +137,34 @@ class Apply extends StatelessWidget {
                         }
 
                         return InkWell(
-                            onTap: () {
+                            onTap: () async {
                               final formValid =
                                   _formKey.currentState!.validate();
                               if (!formValid) {
                                 return;
                               }
-                              BlocProvider.of<ApplyBloc>(context).add(
-                                  ApplyEvent(
-                                      genderCtrl.text,
-                                      degreeCtrl.text,
-                                      int.parse(ageCtrl.text),
-                                      int.parse(expCtrl.text)));
+                              final prefs =
+                                  await SharedPreferences.getInstance();
+                              // print("inAplyyyyyyyyyyyyyyyyyyyyy");
+                              // print(prefs.getInt('id'));
+                              // print("inAplyyyyyyyyyyyyyyyyyyyyy");
+                              print(
+                                  "#################################################");
+                              print(num);
+                              print(
+                                  "#################################################");
+
+                              final Application app = Application(
+                                  int.parse(expCtrl.text),
+                                  int.parse(gpaCtrl.text),
+                                  degreeCtrl.text,
+                                  genderCtrl.text,
+                                  int.parse(ageCtrl.text),
+                                  3,
+                                  num,
+                                  prefs.getInt('id'));
+                              BlocProvider.of<ApplyBloc>(context)
+                                  .add(ApplyEvent(app));
                             },
                             child: Container(
                               width: 100,
@@ -152,7 +184,7 @@ class Apply extends StatelessWidget {
                         return c is ApplySuccesfull;
                       },
                       listener: (BuildContext context, Object? state) {
-                        context.go('/');
+                        context.go('/user/home');
                       },
                     ),
 
