@@ -139,7 +139,7 @@ class ApplicantsList extends StatelessWidget {
                                                 width: 80,
                                                 height: 30,
                                                 decoration: BoxDecoration(
-                                                    color: Colors.green[300],
+                                                    color: Colors.red[300],
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             5)),
